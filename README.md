@@ -13,13 +13,13 @@ Here the agent will be presented with a two-alternative forced decision task. Ov
 
 The agent is reward in an asymmetric manner. For some trials, the agent receives an additional reward for making a left correct action. For the remaining trials, the agent receives an additional reward for making a right correct action. The trials are presented to the agent in blocks.
 
-![Block structure](https://heykayhay.github.com/POMDP/blockReward.png)
-![Reward structure](https://heykayhay.github.com/POMDP/reward.png)
+![Block structure](https://heykayhay.github.com/POMDP/img/blockReward.png)
+![Reward structure](https://heykayhay.github.com/POMDP/img/reward.png)
 
 
 #####The model
 
-![POMDP model flowchart](https://heykayhay.github.com/POMDP/POMDPflowchart.png)
+![POMDP model flowchart](https://heykayhay.github.com/POMDP/img/POMDPflowchart.png)
 
 
 #####The code
