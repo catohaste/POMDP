@@ -1,12 +1,11 @@
-### POMDP
+## POMDP
 
-A project building a reinforcement learning algorithm based upon a _partially observable Markov decision process_. 
+Implementing a reinforcement learning algorithm based upon a _partially observable Markov decision process_. 
 
-The ideas used to build the model implemented here are largely drawn from 
-* [_Reinforcement Learning: An Introduction_](http://people.inf.elte.hu/lorincz/Files/RL_2006/SuttonBook.pdf) by Richard Sutton and Andrew Barto
-* [_Planning and acting in partially observable stochastic domains_](https://doi.org/10.1016/S0004-3702(98)00023-X) by Kaelbling et al. (1998)
-
-Terminology and the majority of the notation are also taken from these sources.
+* [The task](#the-task)
+* [The model](#the-model)
+* [Running the code](#running-the-code)
+* [References](#references)
 
 #### The task
 
@@ -24,4 +23,18 @@ The agent is rewarded in an asymmetric manner. For some trials, the agent receiv
 ![POMDP model flowchart](img/POMDPflowchart.png)
 
 
-#### The code
+#### Running the code
+
+
+#### References
+
+The ideas used to build the model implemented here are largely drawn from 
+* [_Reinforcement Learning: An Introduction_](http://people.inf.elte.hu/lorincz/Files/RL_2006/SuttonBook.pdf) by Richard Sutton and Andrew Barto
+* [_Planning and acting in partially observable stochastic domains_](https://doi.org/10.1016/S0004-3702(98)00023-X) by Kaelbling et al. (1998)
+
+Terminology and the majority of the notation are also taken from these sources.
+
+The task implemented is based upon
+* [_Midbrain Dopamine Neurons Signal Belief in Choice Accuracy during a Perceptual Decision_](http://dx.doi.org/10.1016/j.cub.2017.02.026) by Lak et al. (2017)
+* [_High-yield methods for accurate two-alternative visual psychophysics in head-fixed mice_](http://dx.doi.org/10.1101/051912) by Burgess et al. (2016)
+
