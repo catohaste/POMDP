@@ -1,6 +1,6 @@
 % INPUT DATA STRUCTURE
 % each row represents a single trial
-% column 1 -> contrast values for each trial,...
+% column 1 -> stimulus values for each trial,
 %              one of [-0.5 -0.2 -0.1 -0.05 0.05 0.1 0.2 0.5];
 % column 2 -> rewardBlockID,
 %              1 when agent receives reward for correct LEFT choice
@@ -12,11 +12,11 @@ close all
 %% SET PARAMETER VALUES
 
 % set model parameter values
-alpha       = 0.35;       % learning rate
-DA_val      = 7.0;      % dopamine value
-noiseSTD    = 0.10;    % noise in belief
+alpha       = 0.35;     % learning rate
+rho         = 7.0;      % value of additional reward
+noiseSTD    = 0.14;     % noise in belief
 
-params = [alpha DA_val noiseSTD];
+params = [alpha rho noiseSTD];
 
 %% GENERATE DATA
 
@@ -26,21 +26,21 @@ input = nan(trialN,2);              % create input array
 
 % COLUMN 1 , CONTRAST
 
-contrast = [-0.5 -0.2 -0.1 -0.05 0.05 0.1 0.2 0.5];
-contrastTrials = nan(trialN,1);
+stimulus = [-0.5 -0.2 -0.1 -0.05 0.05 0.1 0.2 0.5];
+stimTrials = nan(trialN,1);
 
 
 for i=1:trialN
    % here, a 'for' loop is used to ensure a different random number is
    % generated on each iteration
 
-   %contrastTrials(i) = (ceil(rand*26)-13.5)*0.04;
-   contrastTrials(i) = contrast(unidrnd(length(contrast)));
+   % stimTrials(i) = (ceil(rand*26)-13.5)*0.04;
+   stimTrials(i) = stimulus(unidrnd(length(stimulus)));
 
 end
 
-% set contrast
-input(:,1) = contrastTrials(:);
+% set stimulus
+input(:,1) = stimTrials(:);
 
 
 % COLUMN 2 , REWARD BLOCK ID

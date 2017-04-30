@@ -2,21 +2,23 @@
 function output = RunPOMDP(input,params)
 
 
-alpha = params(1);
-DA_val = params(2);
+alpha    = params(1);
+rho      = params(2);
 noiseSTD = params(3);
 
-contrastTrials = input(:,1);
+stimTrials = input(:,1);
 
 
 % outcomes of correct trials:
-reward = [1+DA_val, 1, 1+DA_val, 1;
-          1, 1+DA_val, 1+DA_val, 1] ;
+
+%         blk1     blk2
+reward = [1+rho,   1      ; % L action
+          1    ,   1+rho] ; % R action
 
 
 % set run numbers
 iterN = 21;  % model values are averaged over iterations
-trialN = length(contrastTrials);
+trialN = length(stimTrials);
 
 
 % initialise variables, for speed
@@ -39,14 +41,14 @@ for iter = 1:iterN
       
 
       % set contrast
-      currentContrast = contrastTrials(trials);
+      currentStim = stimTrials(trials);
       
       % add sensory noise
-      contrast_withnoise  = currentContrast + noiseSTD * randn;
+      stim_withnoise  = currentStim + noiseSTD * randn;
 
       
       % calculate belief
-      Belief_L = normcdf(0,contrast_withnoise,noiseSTD);
+      Belief_L = normcdf(0,stim_withnoise,noiseSTD);
       Belief_R = 1 - Belief_L;
       
       
@@ -76,15 +78,15 @@ for iter = 1:iterN
 
 
       % trial reward for action chosen by agent
-      if currentContrast<0 && action(trials,iter)==-1
+      if currentStim<0 && action(trials,iter)==-1
          
          Reward = reward(1,input(trials,2));
          
-      elseif currentContrast>0 && action(trials,iter)==1
+      elseif currentStim>0 && action(trials,iter)==1
          
          Reward = reward(2,input(trials,2));
          
-      elseif currentContrast==0
+      elseif currentStim==0
          
          if rand > 0.5
             
@@ -116,15 +118,15 @@ for iter = 1:iterN
          
          delta(trials, iter)   = Reward - QL(trials,iter);
          
-         QLL     = QLL + alpha*delta(trials, iter)*Belief_L ;
-         QRL     = QRL + alpha*delta(trials, iter)*Belief_R ;
+         QLL     = QLL + alpha * delta(trials,iter) * Belief_L ;
+         QRL     = QRL + alpha * delta(trials,iter) * Belief_R ;
          
       else   % right
          
          delta(trials, iter)   = Reward - QR(trials,iter);
          
-         QLR     = QLR + alpha*delta(trials, iter)*Belief_L;
-         QRR     = QRR + alpha*delta(trials, iter)*Belief_R;
+         QLR     = QLR + alpha * delta(trials,iter) * Belief_L;
+         QRR     = QRR + alpha * delta(trials,iter) * Belief_R;
          
       end
       
@@ -134,5 +136,6 @@ end
 
 % set output
 output = [mean(action,2), mean(QL,2), mean(QR,2)];
+
 
 end

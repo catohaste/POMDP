@@ -8,7 +8,7 @@ plotLenVec = cat(1,ones(plotLen,1),zeros(length(input)-plotLen,1));
 
 action = output(plotLenVec==1,1);
 
-smoothaction = smooth(action,7);
+smoothAction = smooth(action,7);
 
 
 block1 = input(plotLenVec==1,2);
@@ -29,7 +29,7 @@ plot(ax,block1,'marker','o','MarkerEdgeColor','b','markerfacecolor',...
 plot(ax,block2,'marker','o','MarkerEdgeColor','r','markerfacecolor',...
    'r','markersize',2,'linestyle','none');
 
-h(1)=plot(ax,smoothaction,'color',[0 0 0],'linestyle','-','linewidth',1.2);
+h(1)=plot(ax,smoothAction,'color',[0 0 0],'linestyle','-','linewidth',1.2);
 
 h(2)=plot(ax,NaN,NaN,'Color','b','linestyle','-','linewidth',2);
 
