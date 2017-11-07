@@ -20,6 +20,7 @@ The agent is rewarded in an asymmetric manner. For some trials, the agent receiv
 
 #### The model
 
+At the beginning of each trial, the agent receives some stimulus, s. The larger the absolute value of stimulus, the clearer the stimulus appears to the agent.
 ![POMDP model flowchart](img/POMDPflowchart.png)
 
 
