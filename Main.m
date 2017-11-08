@@ -21,8 +21,8 @@ params = [alpha rho noiseSTD];
 
 %% SET TASK PARAMETER VALUES
 
-trialN			= 2000;													% number of trials
-blockN			= 10;														% number of blocks
+trialN			= 4000;													% number of trials
+blockN			= 20;														% number of blocks
 extraReward = {'right','left','none'};			% options for extra reward side
 stimulus = ...
 	[-0.5 -0.2 -0.1 -0.05 0.05 0.1 0.2 0.5];	% possible stimulus values
@@ -95,5 +95,5 @@ PlotPsycho(input,output)
 
 % PLOT TRIAL BY TRIAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% PlotTrials(input,output)
+PlotTrials(input,output)
 
