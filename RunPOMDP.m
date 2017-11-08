@@ -71,7 +71,7 @@ for iter = 1:iterN
 		end
 		
 		% trial reward for action chosen by agent
-		if currentStim<0 && strcmp(action{trial,iterN},'left')
+		if currentStim<0 && strcmp(action{trial,iter},'left')
 			
 			switch extraReward{trial}
 				case 'left'
@@ -97,7 +97,7 @@ for iter = 1:iterN
 			
 			if rand > 0.5
 				
-				if strcmp(action{trial,iterN},'left')
+				if strcmp(action{trial,iter},'left')
 					
 					switch extraReward{trial}
 						case 'left'
@@ -108,13 +108,13 @@ for iter = 1:iterN
 							reward = 1;
 					end
 					
-				elseif strcmp(action{trial,iterN},'right')
+				elseif strcmp(action{trial,iter},'right')
 					
 					switch extraReward{trial}
 						case 'left'
-							reward = 1 + rho;
-						case 'right'
 							reward = 1;
+						case 'right'
+							reward = 1 + rho;
 						case 'none'
 							reward = 1;
 					end
@@ -135,7 +135,7 @@ for iter = 1:iterN
 		
 		
 		% calculate delta, and update Q values
-		if strcmp(action{trial,iterN},'left')
+		if strcmp(action{trial,iter},'left')
 			
 			delta(trial, iter)   = reward - QL(trial,iter);
 			
@@ -162,7 +162,7 @@ meanActionNum = mean(actionRight-actionLeft,2);
 % set output
 output.action = meanActionNum;
 output.QL			= mean(QL,2);
-output.QL			= mean(QR,2);
+output.QR			= mean(QR,2);
 
 
 end

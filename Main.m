@@ -6,7 +6,7 @@
 %              1 when agent receives reward for correct LEFT choice
 %              2 when agent received reward for correct RIGHT choice
 
-
+clear
 close all
 
 %% SET MODEL PARAMETER VALUES
@@ -95,5 +95,5 @@ PlotPsycho(input,output)
 
 % PLOT TRIAL BY TRIAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-PlotTrials(input,output)
+% PlotTrials(input,output)
 
