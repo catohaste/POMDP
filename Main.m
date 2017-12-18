@@ -1,6 +1,6 @@
 
-clear
-close all
+% clear
+% close all
 
 %% SET MODEL PARAMETER VALUES
 

@@ -47,8 +47,8 @@ for iter = 1:iterN
 		
 		
 		%initialise Q values for this iteration
-		QL(trial,iter) = Belief_L*QLL + Belief_R*QRL  ;
-		QR(trial,iter) = Belief_L*QLR + Belief_R*QRR  ;
+		QL(trial,iter) = Belief_L*QLL + Belief_R*QRL;
+		QR(trial,iter) = Belief_L*QLR + Belief_R*QRR;
 		
 		
 		% action <-- max(QL,QR)
@@ -134,7 +134,7 @@ for iter = 1:iterN
 		end
 		
 		
-		% calculate delta, and update Q values
+		% calculate the prediction error, and update Q values
 		if strcmp(action{trial,iter},'left')
 			
 			predictionError(trial, iter) = reward - QL(trial,iter);
