@@ -1,10 +1,3 @@
-% INPUT DATA STRUCTURE
-% each row represents a single trial
-% column 1 -> stimulus values for each trial,
-%              one of [-0.5 -0.2 -0.1 -0.05 0.05 0.1 0.2 0.5];
-% column 2 -> rewardBlockID,
-%              1 when agent receives reward for correct LEFT choice
-%              2 when agent received reward for correct RIGHT choice
 
 clear
 close all
@@ -12,11 +5,13 @@ close all
 %% SET MODEL PARAMETER VALUES
 
 % set model parameter values
-alpha       = 0.35;     % learning rate
-rho         = 4.0;      % value of additional reward
-noiseSTD    = 0.18;     % noise in belief
+learningRate    = 0.35;     % learning rate
+extraRewardVal	= 4.0;      % value of additional reward
+beliefNoiseSTD	= 0.18;			% noise in belief
+														% NB this should be smaller than
+														% range(stimulus)
 
-params = [alpha rho noiseSTD];
+params = [learningRate extraRewardVal beliefNoiseSTD];
 
 
 %% SET TASK PARAMETER VALUES

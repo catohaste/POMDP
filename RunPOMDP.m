@@ -2,24 +2,24 @@
 function output = RunPOMDP(input,params)
 
 
-alpha    = params(1);
-rho      = params(2);
-noiseSTD = params(3);
+learningRate    = params(1);
+extraRewardVal	= params(2);
+beliefNoiseSTD = params(3);
 
 stimTrials = input.stimTrials;
 extraReward = input.extraRewardTrials;
 
 
 % set run numbers
-iterN = 21;  % model values are averaged over iterations
+iterN = 21;  % model values are averaged over iterations (odd number)
 trialN = length(stimTrials);
 
 
 % initialise variables, for speed
-action	= cell(trialN,iterN);
-QL			= zeros(trialN,iterN);
-QR			= zeros(trialN,iterN);
-delta		= zeros(trialN,iterN);
+action						= cell(trialN,iterN);
+QL								= zeros(trialN,iterN);
+QR								= zeros(trialN,iterN);
+predictionError		= zeros(trialN,iterN);
 
 
 for iter = 1:iterN
@@ -38,11 +38,11 @@ for iter = 1:iterN
 		currentStim = stimTrials(trial);
 		
 		% add sensory noise
-		stim_withnoise  = currentStim + noiseSTD * randn;
+		stim_withnoise  = currentStim + beliefNoiseSTD * randn;
 		
 		
 		% calculate belief
-		Belief_L = normcdf(0,stim_withnoise,noiseSTD);
+		Belief_L = normcdf(0,stim_withnoise,beliefNoiseSTD);
 		Belief_R = 1 - Belief_L;
 		
 		
@@ -75,7 +75,7 @@ for iter = 1:iterN
 			
 			switch extraReward{trial}
 				case 'left'
-					reward = 1 + rho;
+					reward = 1 + extraRewardVal;
 				case 'right'
 					reward = 1;
 				case 'none'
@@ -88,7 +88,7 @@ for iter = 1:iterN
 				case 'left'
 					reward = 1;
 				case 'right'
-					reward = 1 + rho;
+					reward = 1 + extraRewardVal;
 				case 'none'
 					reward = 1;
 			end
@@ -101,7 +101,7 @@ for iter = 1:iterN
 					
 					switch extraReward{trial}
 						case 'left'
-							reward = 1 + rho;
+							reward = 1 + extraRewardVal;
 						case 'right'
 							reward = 1;
 						case 'none'
@@ -114,7 +114,7 @@ for iter = 1:iterN
 						case 'left'
 							reward = 1;
 						case 'right'
-							reward = 1 + rho;
+							reward = 1 + extraRewardVal;
 						case 'none'
 							reward = 1;
 					end
@@ -137,17 +137,17 @@ for iter = 1:iterN
 		% calculate delta, and update Q values
 		if strcmp(action{trial,iter},'left')
 			
-			delta(trial, iter)   = reward - QL(trial,iter);
+			predictionError(trial, iter) = reward - QL(trial,iter);
 			
-			QLL     = QLL + alpha * delta(trial,iter) * Belief_L ;
-			QRL     = QRL + alpha * delta(trial,iter) * Belief_R ;
+			QLL		= QLL + learningRate * predictionError(trial,iter) * Belief_L;
+			QRL		= QRL + learningRate * predictionError(trial,iter) * Belief_R;
 			
 		else   % right
 			
-			delta(trial, iter)   = reward - QR(trial,iter);
+			predictionError(trial, iter)   = reward - QR(trial,iter);
 			
-			QLR     = QLR + alpha * delta(trial,iter) * Belief_L;
-			QRR     = QRR + alpha * delta(trial,iter) * Belief_R;
+			QLR		= QLR + learningRate * predictionError(trial,iter) * Belief_L;
+			QRR		= QRR + learningRate * predictionError(trial,iter) * Belief_R;
 			
 		end
 		
