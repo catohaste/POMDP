@@ -23,7 +23,7 @@ This code allows the user to choose some of the parameters of the task. For inst
 
 - the number of trials
 - the number of reward blocks
-- options for reward blocks ('right','left' or 'none')
+- options for reward blocks ('right','left' or 'none', where 'none' is optional)
 - stimulus values
 
 ## The model
