@@ -15,7 +15,7 @@ Here the agent will be presented with a two-alternative forced decision task. Ov
 
 The agent is rewarded in an asymmetric manner. For some trials, the agent receives an additional reward for making a left correct action. For the remaining trials, the agent receives an additional reward for making a right correct action. The trials are presented to the agent in blocks.
 
-![Reward structure](img/reward.png)
+![Reward structure](img/reward-table.png)
 
 #### Task parameters
 
@@ -45,7 +45,7 @@ Note that this model implements a POMDP with Q-values. Q-values are a quantifica
 7. The prediction error, the agent's belief and the agent's learning rate (a third parameter of the model) are then used to update the Q-values for the next iteration. 
 
  
-![POMDP model flowchart](img/POMDPflowchart.png)
+![POMDP model flowchart](img/POMDP-flowchart.png)
 
 #### Model parameters
 
