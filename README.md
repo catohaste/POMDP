@@ -15,7 +15,7 @@ Here the agent will be presented with a two-alternative forced decision task. Ov
 
 The agent is rewarded in an asymmetric manner. For some trials, the agent receives an additional reward for making a left correct action. For the remaining trials, the agent receives an additional reward for making a right correct action. The trials are presented to the agent in blocks.
 
-![Reward structure](img/reward-table.png)
+![Reward structure](img/reward.png)
 
 #### Task parameters
 
