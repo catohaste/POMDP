@@ -69,6 +69,6 @@ The ideas used to build the model implemented here are largely drawn from
 Terminology and the majority of the notation are also taken from these sources.
 
 The task implemented is based upon
-* [_Midbrain Dopamine Neurons Signal Belief in Choice Accuracy during a Perceptual Decision_](http://dx.doi.org/10.1016/j.cub.2017.02.026) by Lak et al. (2017)
-* [_High-yield methods for accurate two-alternative visual psychophysics in head-fixed mice_](http://dx.doi.org/10.1101/051912) by Burgess et al. (2016)
+* [_Midbrain Dopamine Neurons Signal Belief in Choice Accuracy during a Perceptual Decision_](https://doi.org/10.1016/j.cub.2017.02.026) by Lak et al. (2017)
+* [_High-yield methods for accurate two-alternative visual psychophysics in head-fixed mice_](https://doi.org/10.1016/j.celrep.2017.08.047) by Burgess et al. (2017)
 
